@@ -25,7 +25,7 @@ return {
             formatters = {
                 clang_format = {
                     command = "clang-format",
-                    args = { "-assume-filename", "$FILENAME", "-style", "{BasedOnStyle: LLVM, IndentWidth: 4}" },
+                    args = { "-assume-filename", "$FILENAME", },
                 },
                 --                goimports_reviser = {
                 --                   command = "goimports-reviser",
