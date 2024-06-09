@@ -104,6 +104,13 @@ end, { desc = "Goto Type Definition" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
 map("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
 
+map("n", "<leader>db", ":DapToggleBreakpoint<cr>", { desc = "Toggle Breakpoint" })
+map("n", "<leader>dr", ":DapContinue<cr>", { desc = "Start of continue the debugger" })
+map("n", "<leader>di", ":DapStepInto<cr>", { desc = "Debugger StepInto" })
+map("n", "<leader>dn", ":DapStepOver<cr>", { desc = "Debugger StepOver" })
+map("n", "<leader>do", ":DapStepOut<cr>", { desc = "Debugger StepOut" })
+
+
 -- Lazygit
 map("n", "<leader>gg", function()
     local term = require("toggleterm.terminal").Terminal

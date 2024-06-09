@@ -15,9 +15,11 @@ return {
             },
             panel = { enabled = false },
             filetypes = {
-                markdown = true,
-                yaml = true,
-                help = true,
+                markdown = false,
+                yaml = false,
+                help = false,
+                [".cpp"] = false,
+                cpp = false,
             },
         })
     end,
