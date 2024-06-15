@@ -1,6 +1,7 @@
 return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = function()
         local colors = require("cyberdream.colors").default
         local cyberdream = require("lualine.themes.cyberdream")
@@ -88,7 +89,7 @@ return {
                 },
             },
 
-            extensions = { "lazy", "toggleterm", "mason", "neo-tree", "trouble" },
+            extensions = { "lazy", "toggleterm", "mason", },
         }
     end,
 }

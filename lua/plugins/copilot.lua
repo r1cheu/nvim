@@ -18,8 +18,6 @@ return {
                 markdown = false,
                 yaml = false,
                 help = false,
-                [".cpp"] = false,
-                cpp = false,
             },
         })
     end,

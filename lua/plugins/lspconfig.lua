@@ -20,6 +20,7 @@ return {
     config = function()
         local mason_registry = require("mason-registry")
 
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
         -- Diagnostics
         vim.diagnostic.config({
             signs = true,
@@ -58,6 +59,24 @@ return {
         require("lspconfig").clangd.setup({
             cmd = { "clangd", "--background-index", },
             filetypes = { "c", "cpp", "objc", "objcpp" },
+        })
+        require("lspconfig").rust_analyzer.setup({
+            settings = {
+                ["rust-analyzer"] = {
+                    checkOnSave = {
+                        command = "clippy",
+                    },
+                },
+            },
+        })
+        require("lspconfig").pyright.setup({
+            capabilities = capabilities,
+        })
+        require("lspconfig").ruff.setup({
+            capabilities = capabilities,
+        })
+        require("lspconfig").ruff_lsp.setup({
+            capabilities = capabilities,
         })
     end,
 }

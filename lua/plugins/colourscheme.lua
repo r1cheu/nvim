@@ -13,7 +13,7 @@ return {
                 theme = {
                     highlights = {
                         LineNr = { fg = "#ffffff" },
-                        CursorLineNr = { fg = "#ffff00" },
+                        CursorLineNr = { fg = "#26C9FC" },
                     }
                 }
             })
