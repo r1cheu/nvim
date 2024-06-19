@@ -1,14 +1,14 @@
 local map = function(modes, lhs, rhs, opts)
-    local options = { silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    if type(modes) == "string" then
-        modes = { modes }
-    end
-    for _, mode in ipairs(modes) do
-        vim.keymap.set(mode, lhs, rhs, options)
-    end
+	local options = { silent = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	if type(modes) == "string" then
+		modes = { modes }
+	end
+	for _, mode in ipairs(modes) do
+		vim.keymap.set(mode, lhs, rhs, options)
+	end
 end
 
 -- better up/down
@@ -91,15 +91,15 @@ map("n", "<leader>cl", ":LspInfo<cr>", { desc = "LSP Info" })
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
 map("n", "gd", function()
-    require("telescope.builtin").lsp_definitions({ reuse_win = true })
+	require("telescope.builtin").lsp_definitions({ reuse_win = true })
 end, { desc = "Goto Definition" })
 map("n", "gr", ":Telescope lsp_references<cr>", { desc = "Goto References" })
 map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
 map("n", "gI", function()
-    require("telescope.builtin").lsp_implementations({ reuse_win = true })
+	require("telescope.builtin").lsp_implementations({ reuse_win = true })
 end, { desc = "Goto Implementation" })
 map("n", "gy", function()
-    require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
+	require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
 end, { desc = "Goto Type Definition" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
 map("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
@@ -110,30 +110,32 @@ map("n", "<leader>di", ":DapStepInto<cr>", { desc = "Debugger StepInto" })
 map("n", "<leader>dn", ":DapStepOver<cr>", { desc = "Debugger StepOver" })
 map("n", "<leader>do", ":DapStepOut<cr>", { desc = "Debugger StepOut" })
 
-
 -- Lazygit
 map("n", "<leader>gg", function()
-    local term = require("toggleterm.terminal").Terminal
-    local lazygit = term:new({
-        cmd = "lazygit",
-        dir = "git_dir",
-        direction = "float",
-        float_opts = {
-            border = "none",
-            -- fullscreen
-            width = vim.o.columns,
-            height = vim.o.lines,
-        },
-    })
-    lazygit:toggle()
+	local term = require("toggleterm.terminal").Terminal
+	local lazygit = term:new({
+		cmd = "lazygit",
+		dir = "git_dir",
+		direction = "float",
+		float_opts = {
+			border = "none",
+			-- fullscreen
+			width = vim.o.columns,
+			height = vim.o.lines,
+		},
+	})
+	lazygit:toggle()
 end, { desc = "Lazygit" })
 
 -- neogen
 
 map("n", "<leader>nf", ":lua require('neogen').generate()<cr>", { noremap = true, desc = "generate function docs" })
-map("n", "<leader>nc", ":lua require('neogen').generate({type='class'})<cr>", { noremap = true, desc = "generate class docs" })
-
-
+map(
+	"n",
+	"<leader>nc",
+	":lua require('neogen').generate({type='class'})<cr>",
+	{ noremap = true, desc = "generate class docs" }
+)
 
 -- Rest-nvim
 --[[map("n", "<leader>rr", ":lua require('rest-nvim').run()<CR>", { desc = "Run HTTP Request" })
@@ -146,4 +148,5 @@ map("n", "<leader>rp", ":lua require('rest-nvim').run(true)<CR>", { desc = "Prev
     map({ "n", "v" }, "<C-x>", '"+x', { desc = "Cut to clipboard" })
     map({ "n", "v" }, "<C-v>", '"+gP', { desc = "Paste from clipboard" })
     map({ "i", "t" }, "<C-v>", '<esc>"+gP', { desc = "Paste from clipboard" })
-end]] --
+end]]
+--

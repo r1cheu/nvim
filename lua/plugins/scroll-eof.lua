@@ -1,7 +1,7 @@
 return {
-    "Aasim-A/scrollEOF.nvim",
-    event = "BufRead",
-    config = function()
-        require("scrollEOF").setup()
-    end,
+	"Aasim-A/scrollEOF.nvim",
+	event = "BufRead",
+	config = function()
+		require("scrollEOF").setup()
+	end,
 }
