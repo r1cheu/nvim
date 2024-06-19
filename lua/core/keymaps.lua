@@ -128,6 +128,13 @@ map("n", "<leader>gg", function()
     lazygit:toggle()
 end, { desc = "Lazygit" })
 
+-- neogen
+
+map("n", "<leader>nf", ":lua require('neogen').generate()<cr>", { noremap = true, desc = "generate function docs" })
+map("n", "<leader>nc", ":lua require('neogen').generate({type='class'})<cr>", { noremap = true, desc = "generate class docs" })
+
+
+
 -- Rest-nvim
 --[[map("n", "<leader>rr", ":lua require('rest-nvim').run()<CR>", { desc = "Run HTTP Request" })
 map("n", "<leader>rl", ":lua require('rest-nvim').last()<CR>", { desc = "Run Last HTTP Request" })
