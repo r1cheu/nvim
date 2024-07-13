@@ -82,5 +82,9 @@ return {
 		require("lspconfig").taplo.setup({
 			capabilities = capabilities,
 		})
+		require("lspconfig").neocmake.setup({
+			cmd = { "neocmakelsp", "--stdio" },
+			capabilities = capabilities,
+		})
 	end,
 }

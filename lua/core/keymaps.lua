@@ -21,12 +21,6 @@ map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 
--- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", ":resize +2<cr>", { desc = "Increase window height" })
-map("n", "<C-Down>", ":resize -2<cr>", { desc = "Decrease window height" })
-map("n", "<C-Left>", ":vertical resize -2<cr>", { desc = "Decrease window width" })
-map("n", "<C-Right>", ":vertical resize +2<cr>", { desc = "Increase window width" })
-
 -- Move Lines
 map("n", "<A-j>", ":m .+1<cr>==", { desc = "Move down" })
 map("n", "<A-k>", ":m .-2<cr>==", { desc = "Move up" })
@@ -38,8 +32,6 @@ map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 -- Buffers
 map("n", "<S-h>", ":BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 map("n", "<S-l>", ":BufferLineCycleNext<cr>", { desc = "Next buffer" })
-map("n", "[b", ":BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-map("n", "]b", ":BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bb", ":e #<cr>", { desc = "Switch to Other buffer" })
 map("n", "<leader>`", ":e #<cr>", { desc = "Switch to Other buffer" })
 
@@ -127,26 +119,19 @@ map("n", "<leader>gg", function()
 	lazygit:toggle()
 end, { desc = "Lazygit" })
 
+map("n", "<leader>gd", ":Copilot disable<cr>", { desc = "disable Copilot" })
+
 -- neogen
 
-map("n", "<leader>nf", ":lua require('neogen').generate()<cr>", { noremap = true, desc = "generate function docs" })
+map("n", "<leader>cnf", ":lua require('neogen').generate()<cr>", { noremap = true, desc = "generate function docs" })
 map(
 	"n",
-	"<leader>nc",
+	"<leader>cnc",
 	":lua require('neogen').generate({type='class'})<cr>",
 	{ noremap = true, desc = "generate class docs" }
 )
 
--- Rest-nvim
---[[map("n", "<leader>rr", ":lua require('rest-nvim').run()<CR>", { desc = "Run HTTP Request" })
-map("n", "<leader>rl", ":lua require('rest-nvim').last()<CR>", { desc = "Run Last HTTP Request" })
-map("n", "<leader>rp", ":lua require('rest-nvim').run(true)<CR>", { desc = "Preview HTTP Request" })
-
--- Neovide specific
---[[if vim.g.neovide then
-    map({ "n", "v" }, "<C-c>", '"+y', { desc = "Copy to clipboard" })
-    map({ "n", "v" }, "<C-x>", '"+x', { desc = "Cut to clipboard" })
-    map({ "n", "v" }, "<C-v>", '"+gP', { desc = "Paste from clipboard" })
-    map({ "i", "t" }, "<C-v>", '<esc>"+gP', { desc = "Paste from clipboard" })
-end]]
---
+map("n", "<leader>ccd", ":CopilotChatDocs<cr>", { noremap = true, desc = "generate docs" })
+map("n", "<leader>cct", ":CopilotChatTests<cr>", { noremap = true, desc = "generate unitest" })
+map("n", "<leader>cco", ":CopilotChatOptimize<cr>", { noremap = true, desc = "optimize code" })
+map("n", "<leader>ccf", ":CopilotChatFix<cr>", { noremap = true, desc = "fix the code" })

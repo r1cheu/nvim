@@ -40,12 +40,16 @@ return {
 					args = { "-assume-filename", "$FILENAME" },
 				},
 				ruff = {
-					command = "ruff",
+					command = "ruff format",
 					args = { "--config", "~/.config/nvim/ruff.toml", "$FILENAME" },
 				},
 
 				black = {
 					command = "black",
+				},
+				codespell = {
+					command = "codespell",
+					args = { "-L", "name", "$FILENAME" },
 				},
 				--                goimports_reviser = {
 				--                   command = "goimports-reviser",

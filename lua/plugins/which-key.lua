@@ -10,6 +10,8 @@ return {
 			mode = { "n", "v" },
 			["<leader>b"] = { name = "+buffer" },
 			["<leader>c"] = { name = "+code" },
+			["<leader>cn"] = { name = "neogen docstring" },
+			["<leader>cc"] = { name = "copilot chat" },
 			["<leader>e"] = { name = "+explorer" },
 			["<leader>f"] = { name = "+file/find" },
 			["<leader>g"] = { name = "+git" },
@@ -19,6 +21,7 @@ return {
 			["<leader>w"] = { name = "+windows" },
 			["<leader>x"] = { name = "+diagnostics/quickfix" },
 			["<leader><Tab>"] = { name = "+tabs" },
+			["<leader>d"] = { name = "+debug" },
 		},
 	},
 	config = function(_, opts)

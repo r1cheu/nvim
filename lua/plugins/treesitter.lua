@@ -38,6 +38,7 @@ return {
 			"cpp",
 			"c",
 			"rust",
+			"cmake",
 		},
 		incremental_selection = {
 			enable = true,
