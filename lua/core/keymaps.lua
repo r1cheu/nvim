@@ -15,34 +15,8 @@ end
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
--- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
-
--- Move Lines
-map("n", "<A-j>", ":m .+1<cr>==", { desc = "Move down" })
-map("n", "<A-k>", ":m .-2<cr>==", { desc = "Move up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
-
--- Buffers
-map("n", "<S-h>", ":BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-map("n", "<S-l>", ":BufferLineCycleNext<cr>", { desc = "Next buffer" })
-map("n", "<leader>bb", ":e #<cr>", { desc = "Switch to Other buffer" })
-map("n", "<leader>`", ":e #<cr>", { desc = "Switch to Other buffer" })
-
 -- lazy
 map("n", "<leader>l", ":Lazy<cr>", { desc = "Lazy" })
-
--- Telescope
-map("n", "<leader>ff", ":Telescope find_files<cr>", { desc = "Fuzzy find files" })
-map("n", "<leader>fr", ":Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-map("n", "<leader>fs", ":Telescope live_grep<cr>", { desc = "Find string in CWD" })
-map("n", "<leader>fc", ":Telescope grep_string<cr>", { desc = "Find string under cursor in CWD" })
 
 --keywordprg
 map("n", "<leader>K", ":norm! K<cr>", { desc = "Keywordprg" })
@@ -61,48 +35,7 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result
 -- quit
 map("n", "<leader>qq", ":qa<cr>", { desc = "Quit all" })
 
--- windows
-map("n", "<leader>ww", "<C-W>p", { desc = "Other window", remap = true })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete window", remap = true })
-map("n", "<leader>w-", "<C-W>s", { desc = "Split window below", remap = true })
-map("n", "<leader>w|", "<C-W>v", { desc = "Split window right", remap = true })
-map("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
-map("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
-
--- tabs
-map("n", "<leader><tab>l", ":tablast<cr>", { desc = "Last Tab" })
-map("n", "<leader><tab>f", ":tabfirst<cr>", { desc = "First Tab" })
-map("n", "<leader><tab><tab>", ":tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab>]", ":tabnext<cr>", { desc = "Next Tab" })
-map("n", "<leader><tab>d", ":tabclose<cr>", { desc = "Close Tab" })
-map("n", "<leader><tab>[", ":tabprevious<cr>", { desc = "Previous Tab" })
-
--- Code/LSP
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-map("n", "<leader>cl", ":LspInfo<cr>", { desc = "LSP Info" })
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
-map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
-map("n", "gd", function()
-	require("telescope.builtin").lsp_definitions({ reuse_win = true })
-end, { desc = "Goto Definition" })
-map("n", "gr", ":Telescope lsp_references<cr>", { desc = "Goto References" })
-map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
-map("n", "gI", function()
-	require("telescope.builtin").lsp_implementations({ reuse_win = true })
-end, { desc = "Goto Implementation" })
-map("n", "gy", function()
-	require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
-end, { desc = "Goto Type Definition" })
-map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
-map("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
-
-map("n", "<leader>db", ":DapToggleBreakpoint<cr>", { desc = "Toggle Breakpoint" })
-map("n", "<leader>dr", ":DapContinue<cr>", { desc = "Start of continue the debugger" })
-map("n", "<leader>di", ":DapStepInto<cr>", { desc = "Debugger StepInto" })
-map("n", "<leader>dn", ":DapStepOver<cr>", { desc = "Debugger StepOver" })
-map("n", "<leader>do", ":DapStepOut<cr>", { desc = "Debugger StepOut" })
-
--- Lazygit
+--[[ Lazygit
 map("n", "<leader>gg", function()
 	local term = require("toggleterm.terminal").Terminal
 	local lazygit = term:new({
@@ -117,21 +50,131 @@ map("n", "<leader>gg", function()
 		},
 	})
 	lazygit:toggle()
-end, { desc = "Lazygit" })
+end, { desc = "Lazygit" }) ]]
+--
 
 map("n", "<leader>gd", ":Copilot disable<cr>", { desc = "disable Copilot" })
 
--- neogen
+local wk = require("which-key")
 
-map("n", "<leader>cnf", ":lua require('neogen').generate()<cr>", { noremap = true, desc = "generate function docs" })
-map(
-	"n",
-	"<leader>cnc",
-	":lua require('neogen').generate({type='class'})<cr>",
-	{ noremap = true, desc = "generate class docs" }
-)
+-- Coding
+wk.add({
+	{
+		mode = { "n", "v" },
+		{ "<leader>g", group = "code" },
+		{ "<leader>gg", group = "CopilotChat" },
+		{ "<leader>gn", group = "neogen" },
+		{ "<leader>gh", group = "git" },
+		{ "<leader>gd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+		{ "<leader>gl", "<cmd>LspInfo<cr>", desc = "LSP Info" },
+		{ "<leader>ga", vim.lsp.buf.code_action, desc = "Code Action" },
+		{ "<leader>gr", vim.lsp.buf.rename, desc = "Rename" },
+		{ "<leader>gm", "<cmd>Mason<cr>", desc = "Mason" },
+		{ "<leader>ggd", "<cmd>CopilotChatDocs<cr>", desc = "Generate Docs" },
+		{ "<leader>ggf", "<cmd>CopilotChatFix<cr>", desc = "Fix the Code" },
+		{ "<leader>ggo", "<cmd>CopilotChatOptimize<cr>", desc = "Optimize Code" },
+		{ "<leader>ggt", "<cmd>CopilotChatTests<cr>", desc = "Generate unitest" },
+		{ "<leader>gge", "<cmd>CopilotChatExplain<cr>", desc = "Explain the Code" },
+		{ "<leader>gnc", "<cmd>lua require('neogen').generate({type='class'})<cr>", desc = "Generate Class Docs" },
+		{ "<leader>gnf", "<cmd>lua require('neogen').generate()<cr>", desc = "Generate Function Docs" },
+	},
+})
 
-map("n", "<leader>ccd", ":CopilotChatDocs<cr>", { noremap = true, desc = "generate docs" })
-map("n", "<leader>cct", ":CopilotChatTests<cr>", { noremap = true, desc = "generate unitest" })
-map("n", "<leader>cco", ":CopilotChatOptimize<cr>", { noremap = true, desc = "optimize code" })
-map("n", "<leader>ccf", ":CopilotChatFix<cr>", { noremap = true, desc = "fix the code" })
+wk.add({
+	{ mode = "n", "<leader>cm", "<cmd>Mason<cr>", hidden = true },
+})
+
+wk.add({
+	{
+		mode = "n",
+		{
+			"gd",
+			function()
+				require("telescope.builtin").lsp_definitions({ reuse_win = true })
+			end,
+			desc = "Goto Definition",
+		},
+		{ "gr", "<cmd>Telescope lsp_references<cr>", desc = "Goto References" },
+		{ "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+		{
+			"gI",
+			function()
+				require("telescope.builtin").lsp_implementations({ reuse_win = true })
+			end,
+			desc = "Goto Implementation",
+		},
+		{
+			"gy",
+			function()
+				require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
+			end,
+			desc = "Goto Type Definition",
+		},
+		{ "K", vim.lsp.buf.hover, desc = "Hover" },
+		{ "gK", vim.lsp.buf.signature_help, desc = "Signature Help" },
+	},
+})
+
+-- Debugging
+wk.add({
+	mode = { "n" },
+	{ "<leader>d", group = "debug" },
+	{ "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle Breakpoint" },
+	{ "<leader>dr", "<cmd>DapContinue<cr>", desc = "Start or continue the debugger" },
+	{ "<leader>di", "<cmd>DapStepInto<cr>", desc = "StepInto" },
+	{ "<leader>dn", "<cmd>DapStepOver<cr>", desc = "StepOver" },
+	{ "<leader>do", "<cmd>DapStepOut<cr>", desc = "StepOut" },
+	{ "<leader>dc", "<cmd>DapContinue<cr>", desc = "Continue" },
+})
+
+-- tabs
+wk.add({
+	mode = "n",
+	{ "<leader><tab>", group = "tabs" },
+	{ "<leader><tab>l", "<cmd>tablst<cr>", desc = "Last Tab" },
+	{ "<leader><tab>f", "<cmd>tabfirst<cr>", desc = "First Tab" },
+	{ "<leader><tab><tab>", "<cmd>tabnew<cr>", desc = "New Tab" },
+	{ "<leader><tab>]", "<cmd>tabnext<cr>", desc = "Next Tab" },
+	{ "<leader><tab>d", "<cmd>tabclose<cr>", desc = "Close Tab" },
+	{ "<leader><tab>[", "<cmd>tabprevious<cr>", desc = "Previous Tab" },
+})
+
+-- windows
+wk.add({
+	mode = "n",
+	{ "<leader>w", group = "windows" },
+	{ "<leader>ww", "<C-W>p", desc = "Other window" },
+	{ "<leader>wd", "<C-W>c", desc = "Delete window" },
+	{ "<leader>w-", "<C-W>s", desc = "Split window below" },
+	{ "<leader>w|", "<C-W>v", desc = "Split window right" },
+	{ "<leader>-", "<C-W>s", desc = "Split window below" },
+	{ "<leader>|", "<C-W>v", desc = "Split window right" },
+})
+
+-- move between windows
+
+wk.add({
+	mode = "n",
+	{ "<C-h>", "<C-w>h", desc = "Go to left window", hidden = true },
+	{ "<C-j>", "<C-w>j", desc = "Go to lower window", hidden = true },
+	{ "<C-k>", "<C-w>k", desc = "Go to upper window", hidden = true },
+	{ "<C-l>", "<C-w>l", desc = "Go to right window", hidden = true },
+})
+
+-- Buffers
+wk.add({
+	mode = "n",
+	{ "<S-h>", "<cmd>BufferLineCyclePrev", desc = "Prev Buffer", hidden = true },
+	{ "<S-l>", "<cmd>BufferLineCycleNext", desc = "Next Buffer", hidden = true },
+	{ "<leader>b", group = "buffer" },
+})
+
+-- Telescope
+wk.add({
+	mode = "n",
+	{ "<leader>f", group = "file" },
+	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Fuzzy find files" },
+	{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Fuzzy find recent files" },
+	{ "<leader>fs", "<cmd>Telescope live_grep<cr>", desc = "Find string in CWD" },
+	{ "<leader>fc", "<cmd>Telescope grep_string<cr>", desc = "Find string under cursor in CWD" },
+})
