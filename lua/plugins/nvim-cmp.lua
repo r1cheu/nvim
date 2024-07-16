@@ -14,7 +14,7 @@ return {
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		local lspkind = require("lspkind")
-		local max_items = 5
+		local max_items = 7
 
 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 

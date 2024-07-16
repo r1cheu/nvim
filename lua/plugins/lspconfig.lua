@@ -18,8 +18,6 @@ return {
 		"smiteshp/nvim-navic",
 	},
 	config = function()
-		local mason_registry = require("mason-registry")
-
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		-- Diagnostics
 		vim.diagnostic.config({
@@ -35,30 +33,10 @@ return {
 		-- Go
 
 		-- Lua
-		require("lspconfig").lua_ls.setup({
-			on_init = function(client)
-				local path = client.workspace_folders[1].name
-				if not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-					client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
-						Lua = {
-							runtime = {
-								version = "LuaJIT",
-							},
-							workspace = {
-								checkThirdParty = false,
-								library = vim.api.nvim_get_runtime_file("", true),
-							},
-						},
-					})
-
-					client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-				end
-				return true
-			end,
-		})
+		require("lspconfig").lua_ls.setup({})
 		require("lspconfig").clangd.setup({
-			cmd = { "clangd", "--background-index" },
-			filetypes = { "c", "cpp", "objc", "objcpp" },
+			cmd = { "clangd", "--query-driver=/usr/sbin/c++" },
+			capabilities = capabilities,
 		})
 		require("lspconfig").rust_analyzer.setup({
 			settings = {

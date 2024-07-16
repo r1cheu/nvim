@@ -65,6 +65,7 @@ wk.add({
 		{ "<leader>gg", group = "CopilotChat" },
 		{ "<leader>gn", group = "neogen" },
 		{ "<leader>gh", group = "git" },
+		{ "<leader>gC", "<cmd>CopilotChat<cr>", desc = "Copilot Chat" },
 		{ "<leader>gd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
 		{ "<leader>gl", "<cmd>LspInfo<cr>", desc = "LSP Info" },
 		{ "<leader>ga", vim.lsp.buf.code_action, desc = "Code Action" },
@@ -164,8 +165,8 @@ wk.add({
 -- Buffers
 wk.add({
 	mode = "n",
-	{ "<S-h>", "<cmd>BufferLineCyclePrev", desc = "Prev Buffer", hidden = true },
-	{ "<S-l>", "<cmd>BufferLineCycleNext", desc = "Next Buffer", hidden = true },
+	{ "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer", hidden = true },
+	{ "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer", hidden = true },
 	{ "<leader>b", group = "buffer" },
 })
 
