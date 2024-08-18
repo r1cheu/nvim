@@ -11,6 +11,8 @@ return {
 			"rust-analyzer",
 			"ruff-lsp",
 			"pyright",
+			"neocmakelsp",
+			"stylua",
 		},
 	},
 }

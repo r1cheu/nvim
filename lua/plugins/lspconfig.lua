@@ -56,7 +56,15 @@ return {
 
 		require("lspconfig").pyright.setup({
 			capabilities = capabilities,
+			settings = {
+				python = {
+					analysis = {
+						typeCheckingMode = "off",
+					},
+				},
+			},
 		})
+
 		require("lspconfig").taplo.setup({
 			capabilities = capabilities,
 		})
