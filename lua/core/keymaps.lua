@@ -77,7 +77,13 @@ wk.add({
 		{ "<leader>ggt", "<cmd>CopilotChatTests<cr>", desc = "Generate unitest" },
 		{ "<leader>gge", "<cmd>CopilotChatExplain<cr>", desc = "Explain the Code" },
 		{ "<leader>gnc", "<cmd>lua require('neogen').generate({type='class'})<cr>", desc = "Generate Class Docs" },
-		{ "<leader>gnf", "<cmd>lua require('neogen').generate()<cr>", desc = "Generate Function Docs" },
+		{ "<leader>gnf", "<cmd>lua require('neogen').generate({type='func'})<cr>", desc = "Generate Function Docs" },
+		{
+			"<leader>gnm",
+			"<cmd>lua require('neogen').generate({type='file'})<cr>",
+			desc = "Generate Module（File）Docs",
+		},
+		{ "<leader>gnt", "<cmd>lua require('neogen').generate({type='type'})<cr>", desc = "Generate Type" },
 	},
 })
 

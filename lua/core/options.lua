@@ -19,14 +19,25 @@ opt.conceallevel = 1
 opt.scrolloff = 12
 opt.wrap = true
 opt.linebreak = true
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Set tab width
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.autoindent = true
 opt.expandtab = true
-
--- Make cursor blink
+vim.g.clipboard = {
+	name = "win32yank-wsl",
+	copy = {
+		["+"] = "win32yank.exe -i --crlf",
+		["*"] = "win32yank.exe -i --crlf",
+	},
+	paste = {
+		["+"] = "win32yank.exe -o --lf",
+		["*"] = "win32yank.exe -o --lf",
+	},
+	cache_enabled = true,
+}
 opt.guicursor = {
 	"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50",
 	"a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",

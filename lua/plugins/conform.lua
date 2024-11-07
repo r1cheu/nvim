@@ -11,6 +11,8 @@ return {
 				sh = { "shfmt" },
 				toml = { "taplo" },
 				yaml = { "prettier" },
+				css = { "prettier" },
+				html = { "prettier" },
 				cpp = { "clang_format" },
 				python = function(bufnr)
 					if require("conform").get_formatter_info("ruff_format", bufnr).available then
@@ -50,6 +52,9 @@ return {
 				codespell = {
 					command = "codespell",
 					args = { "-L", "name", "$FILENAME" },
+				},
+				prettier = {
+					prepend_args = { "--tab-width", "4" },
 				},
 				--                goimports_reviser = {
 				--                   command = "goimports-reviser",

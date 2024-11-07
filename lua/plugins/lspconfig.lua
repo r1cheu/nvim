@@ -35,7 +35,7 @@ return {
 		-- Lua
 		require("lspconfig").lua_ls.setup({})
 		require("lspconfig").clangd.setup({
-			cmd = { "clangd", "--query-driver=/usr/sbin/c++" },
+			cmd = { "clangd", "--log=verbose" },
 			capabilities = capabilities,
 		})
 		require("lspconfig").rust_analyzer.setup({
@@ -50,10 +50,6 @@ return {
 		require("lspconfig").ruff.setup({
 			capabilities = capabilities,
 		})
-		require("lspconfig").ruff_lsp.setup({
-			capabilities = capabilities,
-		})
-
 		require("lspconfig").pyright.setup({
 			capabilities = capabilities,
 			settings = {
@@ -68,9 +64,10 @@ return {
 		require("lspconfig").taplo.setup({
 			capabilities = capabilities,
 		})
-		require("lspconfig").neocmake.setup({
-			cmd = { "neocmakelsp", "--stdio" },
+		require("lspconfig").cmake.setup({
+			cmd = { "cmake-language-server" },
 			capabilities = capabilities,
+			filetypes = { "cmake" },
 		})
 	end,
 }
