@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+	lazy = false,
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		{
@@ -14,31 +15,17 @@ return {
 		"Bilal2453/luvit-meta",
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		"hrsh7th/cmp-nvim-lsp",
 		"smiteshp/nvim-navic",
 	},
 	config = function()
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		-- Diagnostics
-		vim.diagnostic.config({
-			signs = true,
-			underline = true,
-			update_in_insert = true,
-			virtual_text = {
-				source = "if_many",
-				prefix = "●",
-			},
+		local lspconfig = require("lspconfig")
+		local mason_registry = require("mason-registry")
+		require("lspconfig.ui.windows").default_options.border = "rounded"
+		lspconfig.lua_ls.setup({})
+		lspconfig.clangd.setup({
+			cmd = { "clangd", "--background-index=0", "--clang-tidy" },
 		})
-
-		-- Go
-
-		-- Lua
-		require("lspconfig").lua_ls.setup({})
-		require("lspconfig").clangd.setup({
-			cmd = { "clangd", "--log=verbose" },
-			capabilities = capabilities,
-		})
-		require("lspconfig").rust_analyzer.setup({
+		lspconfig.rust_analyzer.setup({
 			settings = {
 				["rust-analyzer"] = {
 					checkOnSave = {
@@ -47,11 +34,8 @@ return {
 				},
 			},
 		})
-		require("lspconfig").ruff.setup({
-			capabilities = capabilities,
-		})
-		require("lspconfig").pyright.setup({
-			capabilities = capabilities,
+		lspconfig.ruff.setup({})
+		lspconfig.pyright.setup({
 			settings = {
 				python = {
 					analysis = {
@@ -60,13 +44,8 @@ return {
 				},
 			},
 		})
-
-		require("lspconfig").taplo.setup({
-			capabilities = capabilities,
-		})
-		require("lspconfig").cmake.setup({
+		lspconfig.cmake.setup({
 			cmd = { "cmake-language-server" },
-			capabilities = capabilities,
 			filetypes = { "cmake" },
 		})
 	end,

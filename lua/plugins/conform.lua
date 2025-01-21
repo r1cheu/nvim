@@ -7,12 +7,8 @@ return {
 			formatters_by_ft = {
 				json = { "prettier" },
 				lua = { "stylua" },
-				markdown = { "prettier" },
 				sh = { "shfmt" },
 				toml = { "taplo" },
-				yaml = { "prettier" },
-				css = { "prettier" },
-				html = { "prettier" },
 				cpp = { "clang_format" },
 				python = function(bufnr)
 					if require("conform").get_formatter_info("ruff_format", bufnr).available then
@@ -39,7 +35,10 @@ return {
 			formatters = {
 				clang_format = {
 					command = "clang-format",
-					args = { "-assume-filename", "$FILENAME" },
+					args = {
+						"-assume-filename",
+						"$FILENAME",
+					},
 				},
 				ruff = {
 					command = "ruff format",
@@ -52,9 +51,6 @@ return {
 				codespell = {
 					command = "codespell",
 					args = { "-L", "name", "$FILENAME" },
-				},
-				prettier = {
-					prepend_args = { "--tab-width", "4" },
 				},
 				--                goimports_reviser = {
 				--                   command = "goimports-reviser",
