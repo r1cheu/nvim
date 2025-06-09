@@ -153,11 +153,26 @@ map("n", "gd", function() snacks.picker.lsp_definitions() end, { desc = "Goto De
 map("n", "gy", function() snacks.picker.lsp_type_definitions() end, { desc = "Goto Type Definitions" })
 
 -- Code Docstrings
-map("n", "<leader>df", ":lua require('neogen').generate()<CR>", { desc = "Generate Docstring", noremap = true , silent = true })
+map("n", "<leader>cf", ":lua require('neogen').generate()<CR>", { desc = "Generate Docstring", noremap = true , silent = true })
 
 -- Terminal/Run...
+local win_config = {
+  win = {
+    position = "float", -- or "bottom", "right", "left", "top"
+    width = 0.99,        -- proportion of screen width (if float)
+    height = 0.99,       -- proportion of screen height (if float)
+    border = "none", -- or "none", "single", "double", "shadow"
+	wo = {
+		winbar = "", -- hide terminal title
+		},
+
+  }
+}
 map({"n", "t"}, "<C-\\>", function() snacks.terminal() end, { desc = "Toggle Terminal" })
 map("n", "<leader>gg", function() snacks.lazygit() end, { desc = "Lazygit" })
+map("n", "<leader>gd", function() snacks.terminal("lazydocker",  win_config) end, { desc = "Lazydocker" })
+map("n", "<leader>bb", function() snacks.terminal("basilk",  win_config) end, { desc = "basilk" })
+map("n", "<leader>z", function() snacks.zen() end, { desc = "zen" })
 map("n", "<leader>rss", run_non_interactive_cmd(vim.fn.expand("%:p")), { desc = "Run shell script" })
 map("n", "<leader>rt", run_non_interactive_cmd("pytest -x"), { desc = "Run task" })
 -- stylua: ignore end

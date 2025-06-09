@@ -16,8 +16,6 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
 end
 
 -- UI/General
-opt.number = true
-opt.relativenumber = true
 opt.ignorecase = true
 opt.cursorline = true
 opt.clipboard = "unnamedplus"

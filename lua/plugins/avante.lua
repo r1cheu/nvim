@@ -5,36 +5,77 @@ return {
 	opts = {
 		provider = "deepseek_v3",
 		auto_suggestions_provider = "deepseek_v3",
-		vendors = {
+		-- cursor_applying_provider = "ollama",
+		-- behaviour = {
+		-- 	enable_cursor_planning_mode = true,
+		-- },
+		providers = {
+			ollama = {
+				endpoint = "http://10.10.9.2:11434",
+				model = "qwen3:8b",
+				extra_request_body = {
+					options = {
+						temperature = 0.7,
+						top_p = 0.8,
+						min_p = 0,
+						top_k = 20,
+						think = false,
+						num_ctx = 32768,
+						keep_alive = "-1",
+					},
+				},
+			},
+			sonnet4 = {
+				__inherited_from = "openai",
+				api_key_name = "OPENROUTER_API_KEY",
+				endpoint = "https://openrouter.ai/api/v1",
+				model = "anthropic/claude-sonnet-4",
+				extra_request_body = {
+					options = {
+						max_token = 64000,
+					},
+				},
+			},
 			deepseek_v3 = {
 				__inherited_from = "openai",
 				api_key_name = "DEEPSEEK_API_KEY",
-				endpoint = "https://api.deepseek.com",
+				endpoint = "https://api.deepseek.com/v1",
 				model = "deepseek-chat",
-				max_tokens = 8191,
+				extra_request_body = {
+					options = {
+						max_tokens = 8192,
+					},
+				},
 			},
 			deepseek_r1 = {
 				__inherited_from = "openai",
 				api_key_name = "DEEPSEEK_API_KEY",
-				endpoint = "https://api.deepseek.com",
+				endpoint = "https://api.deepseek.com/v1",
 				model = "deepseek-reasoner",
-				max_tokens = 8191,
+				extra_request_body = {
+					options = {
+						max_tokens = 32768,
+					},
+				},
+			},
+			qwen3 = {
+				__inherited_from = "openai",
+				api_key_name = "QWEN_API_KEY",
+				endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1/",
+				model = "qwen3-235b-a22b",
+				extra_request_body = {
+					options = {
+						max_tokens = 16384,
+					},
+				},
 			},
 		},
-		behaviour = {
-			auto_suggestions = false, -- Experimental stage
-			auto_set_highlight_group = true,
-			auto_set_keymaps = true,
-			auto_apply_diff_after_generation = false,
-			support_paste_from_clipboard = false,
-			minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
-		},
-		-- add any opts here
 	},
 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 	build = "make",
 	-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 	dependencies = {
+		"nvim-treesitter/nvim-treesitter",
 		"stevearc/dressing.nvim",
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
@@ -50,8 +91,6 @@ return {
 					drag_and_drop = {
 						insert_mode = true,
 					},
-					-- required for Windows users
-					use_absolute_path = true,
 				},
 			},
 		},

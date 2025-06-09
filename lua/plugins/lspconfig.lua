@@ -6,6 +6,7 @@ return {
 			"folke/lazydev.nvim",
 			ft = "lua",
 			opts = {
+				lsp = { auto_attact = true },
 				library = {
 					{ path = "luvit-meta/library", words = { "vim%.uv" } },
 				},
@@ -14,7 +15,6 @@ return {
 		"Bilal2453/luvit-meta",
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		"smiteshp/nvim-navic",
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -47,10 +47,16 @@ return {
 			lspconfig[server].setup({})
 		end
 
-		-- Cpp
 		lspconfig.clangd.setup({
-			cmd = { "clangd", "--background-index=0", "--clang-tidy" },
+			cmd = {
+				"clangd",
+				"--background-index",
+				"--clang-tidy",
+				"--offset-encoding=utf-16",
+				"--header-insertion=iwyu",
+			},
 		})
+
 		--Python
 		lspconfig.pyright.setup({
 			settings = {

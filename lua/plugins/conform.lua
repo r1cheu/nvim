@@ -10,7 +10,7 @@ return {
 				markdown = { "prettier" },
 				rust = { "rustfmt" },
 				sh = { "shfmt" },
-				toml = { "taplo" },
+				toml = { "taplo", "pyproject-fmt" },
 				yaml = { "prettier" },
 				cpp = { "clang-format" },
 				python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },

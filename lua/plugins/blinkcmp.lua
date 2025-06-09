@@ -2,7 +2,7 @@
 return {
 	"saghen/blink.cmp",
 	lazy = false,
-	dependencies = { "rafamadriz/friendly-snippets", "fang2hou/blink-copilot" },
+	dependencies = { "L3MON4D3/LuaSnip", "giuxtaposition/blink-cmp-copilot", "Kaiser-Yang/blink-cmp-avante" }, -- "fang2hou/blink-copilot" },
 	version = "v0.*",
 	config = function()
 		local is_enabled = function()
@@ -22,12 +22,19 @@ return {
 					Copilot = "",
 				},
 			},
+
+			snippets = { preset = "luasnip" },
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "copilot" },
+				default = { "avante", "lsp", "path", "snippets", "buffer", "copilot" },
 				providers = {
+					avante = {
+						module = "blink-cmp-avante",
+						name = "Avante",
+						opts = {},
+					},
 					copilot = {
 						name = "copilot",
-						module = "blink-copilot",
+						module = "blink-cmp-copilot",
 						score_offset = 100,
 						async = true,
 						opts = {

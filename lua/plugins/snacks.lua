@@ -16,14 +16,17 @@ return {
 			},
 			terminal = {
 				win = {
-					position = "right",
-					width = 0.5,
+					position = "float",
+					width = 0.4,
+					height = 0,
+					border = "rounded",
 					wo = {
 						winbar = "", -- hide terminal title
 					},
 				},
 			},
 			picker = {
+				ui_select = true,
 				formatters = {
 					file = {
 						filename_first = true,
