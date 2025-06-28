@@ -23,6 +23,7 @@ return {
 			"yaml",
 			"python",
 			"cpp",
+			"snakemake",
 		},
 	},
 	config = function(_, opts)

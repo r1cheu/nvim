@@ -3,7 +3,7 @@ return {
 	event = "VeryLazy",
 	lazy = false,
 	opts = {
-		provider = "deepseek_v3",
+		provider = "deepseek_r1",
 		auto_suggestions_provider = "deepseek_v3",
 		-- cursor_applying_provider = "ollama",
 		-- behaviour = {

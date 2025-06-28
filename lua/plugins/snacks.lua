@@ -17,7 +17,7 @@ return {
 			terminal = {
 				win = {
 					position = "float",
-					width = 0.4,
+					width = 0.5,
 					height = 0,
 					border = "rounded",
 					wo = {

@@ -16,6 +16,7 @@ return {
 				python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 				cmake = { "cmake_format" },
 				djangohtml = { "djlint" },
+				snakemake = { "snakefmt" },
 			},
 
 			format_after_save = function()
