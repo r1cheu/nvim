@@ -1,0 +1,11 @@
+{
+  "name": "custom-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": ["c", "cpp", "java", "go", "rust"],
+        "path": "./c-cpp.json"
+      }
+    ]
+  }
+}
